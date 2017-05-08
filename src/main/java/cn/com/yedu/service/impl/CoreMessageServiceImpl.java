@@ -2,10 +2,12 @@ package cn.com.yedu.service.impl;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
+import cn.com.yedu.dao.ITextMessageDao;
 import cn.com.yedu.service.ICoreMessageService;
 import cn.com.yedu.util.Constants;
 import cn.com.yedu.util.MessageUtil;
@@ -14,6 +16,8 @@ import cn.com.yedu.util.MessageUtil;
 @Service("coreMessageService")
 public class CoreMessageServiceImpl implements ICoreMessageService{
 
+	@Resource
+	public ITextMessageDao textMessageDao;
 	
 	
 	public String processRequest(HttpServletRequest request) {
@@ -24,13 +28,14 @@ public class CoreMessageServiceImpl implements ICoreMessageService{
 				
 				result = Constants.WELOME_SUBSCRIBE;
 				
-			}if(MessageUtil.EVENT_TYPE_UNSUBSCRIBE.equals(messages.get("MsgType"))){//事件类型：unsubscribe(取消订阅) 
+			}else if(MessageUtil.EVENT_TYPE_UNSUBSCRIBE.equals(messages.get("MsgType"))){//事件类型：unsubscribe(取消订阅) 
 				
 				result = Constants.UNSUBSCRIBE_FAREWELL;
 				
 			}else if(MessageUtil.RESP_MESSAGE_TYPE_TEXT.equals(messages.get("MsgType"))){//文本消息
 				
-				
+				result = textMessageDao.getTextMessageRes(MessageUtil.RESP_MESSAGE_TYPE_TEXT, messages.get("Content")).get("content");
+			
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

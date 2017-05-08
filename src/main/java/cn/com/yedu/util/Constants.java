@@ -4,11 +4,11 @@ public class Constants {
 	/**
 	 * APPID
 	 */
-	public static String APPID = "wx52e8ee1150fe3a42";
+	public static String APPID = "wxafa3acec3c315f4d";
 	/**
 	 * SECRET
 	 */
-	public static String SECRET = "3b69f4a0443558fae7c088bb784c2e5e";
+	public static String SECRET = "ddd55a78b563cbf8d926377b1f0758a2";
 	/**
 	 * 获取ACCESS_TOKEN接口
 	 */
@@ -24,7 +24,7 @@ public class Constants {
 	/**
 	 * 微信接入token ，用于验证微信接口
 	 */
-	public static String TOKEN = "abc123";
+	public static String TOKEN = "521yedu";
 	
 	
 	//请求处理失败
