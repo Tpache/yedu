@@ -1,6 +1,5 @@
 package cn.com.yedu.controller;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.annotation.Resource;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.com.yedu.pojo.WeChatSign;
 import cn.com.yedu.service.ICoreMessageService;
-import cn.com.yedu.service.IUserService;
 import cn.com.yedu.util.SignUtil;
 
 @Controller
@@ -28,7 +26,6 @@ public class SignController {
 	  private ICoreMessageService coreMessageService;
 	
 	@RequestMapping(value="/api",method = RequestMethod.GET)
-	@ResponseBody
 	public void yeduWXAccessGet(HttpServletRequest request,HttpServletResponse response,WeChatSign wc) throws Exception{
 		System.out.println("/api");
 		String signature = wc.getSignature(); // 微信加密签名  
@@ -54,9 +51,8 @@ public class SignController {
 	}
 	
 	@RequestMapping(value="/api",method = RequestMethod.POST)
-	@ResponseBody
-	public void yeduWXAccessPost(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
+	public void yeduWXAccessPost(HttpServletRequest request, HttpServletResponse response) throws Exception	{
+		
 		// 将请求、响应的编码均设置为UTF-8（防止中文乱码）  
         request.setCharacterEncoding("UTF-8");  //微信服务器POST消息时用的是UTF-8编码，在接收时也要用同样的编码，否则中文会乱码；
         response.setCharacterEncoding("UTF-8"); //在响应消息（回复消息给用户）时，也将编码方式设置为UTF-8，原理同上；
@@ -67,7 +63,7 @@ public class SignController {
         //调用response.getWriter().write()方法将消息的处理结果返回给用户
       //向微信服务器返回执行结果
         out.print(respMessage);
+        logger.info("请求返回结果----> "+respMessage);
         out.close();
-        out = null;
 	}
 }

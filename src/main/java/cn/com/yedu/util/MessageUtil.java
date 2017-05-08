@@ -11,6 +11,8 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import cn.com.yedu.pojo.resp.TextMessage;
+
 public class MessageUtil {
 
 	/** 
@@ -27,7 +29,9 @@ public class MessageUtil {
      * 返回消息类型：图文 
      */  
     public static final String RESP_MESSAGE_TYPE_NEWS = "news";  
-  
+    
+    
+    
     /** 
      * 请求消息类型：文本 
      */  
@@ -52,6 +56,16 @@ public class MessageUtil {
      * 请求消息类型：音频 
      */  
     public static final String REQ_MESSAGE_TYPE_VOICE = "voice";  
+    
+    /**
+     * 请求消息类型：视频
+     */
+    public static final String REQ_MESSAGE_TYPE_VIDEO = "video";
+    
+    /**
+     * 请求消息类型：小视频
+     */
+    public static final String REQ_MESSAGE_TYPE_SHORTVIDEO = "shortvideo";
   
     /** 
      * 请求消息类型：推送 
@@ -101,4 +115,9 @@ public class MessageUtil {
   
         return map;  
     }  
+    public static String textMessageToXml(TextMessage textMessage){
+    	xstream.alias("xml", textMessage.getClass());  
+        return xstream.toXML(textMessage); 
+    }
+    
 }
