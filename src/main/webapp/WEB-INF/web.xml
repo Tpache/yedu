@@ -33,6 +33,11 @@
 	<listener>
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
+	
+	<!-- 自定义监听器 -->
+	<!-- <listener>
+		<listener-class>cn.com.yedu.listener.AccessTokenListener</listener-class>
+	</listener> -->
 
 	<!-- Spring MVC servlet -->
 	<servlet>

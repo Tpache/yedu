@@ -5,7 +5,6 @@ public class BaseMessage {
 	private String FromUserName;
 	private long CreateTime;
 	private String MsgType;
-	private int FuncFlag;  
 	
 	public String getToUserName() {
 		return ToUserName;
@@ -30,12 +29,6 @@ public class BaseMessage {
 	}
 	public void setMsgType(String msgType) {
 		MsgType = msgType;
-	}
-	public int getFuncFlag() {
-		return FuncFlag;
-	}
-	public void setFuncFlag(int funcFlag) {
-		FuncFlag = funcFlag;
 	}
 	
 }

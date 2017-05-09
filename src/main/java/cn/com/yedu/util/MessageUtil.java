@@ -1,6 +1,7 @@
 package cn.com.yedu.util;
 
 import java.io.InputStream;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.core.util.QuickWriter;
+import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
+import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
+import com.thoughtworks.xstream.io.xml.XppDriver;
 
 import cn.com.yedu.pojo.resp.TextMessage;
 
@@ -115,9 +122,40 @@ public class MessageUtil {
   
         return map;  
     }  
-    public static String textMessageToXml(TextMessage textMessage){
-    	xstream.alias("xml", textMessage.getClass());  
-        return xstream.toXML(textMessage); 
-    }
     
+    /**
+     * 扩展xstream，使其支持CDATA块
+     */
+    private static XStream xStream = new XStream(new XppDriver(){
+        public HierarchicalStreamWriter createWriter(Writer out) {
+            return new PrettyPrintWriter(out){
+                //对所有xml节点的转换都增加CDATA标记
+                boolean cdata = true;
+                @Override
+                public void startNode(String name, Class clazz) {
+                    super.startNode(name, clazz);
+                }
+                @Override
+                protected void writeText(QuickWriter writer, String text) {
+                    if(cdata){
+                        writer.write("<![CDATA[");
+                        writer.write(text);
+                        writer.write("]]>");
+                    }else {
+                        writer.write(text);
+                    }
+                }
+            };
+        }
+    });
+    
+    /**
+     * 文本消息对象转换成xml
+     * @param textMessage
+     * @return
+     */
+    public static String textMessageToXml(TextMessage textMessage){
+    	xStream.alias("xml", textMessage.getClass());  
+        return xStream.toXML(textMessage); 
+    }
 }

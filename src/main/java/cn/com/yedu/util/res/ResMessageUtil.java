@@ -20,9 +20,11 @@ public class ResMessageUtil {
 		textMessage.setFromUserName(toUserName);
 		textMessage.setCreateTime(new Date().getTime());
 		textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
-		textMessage.setFuncFlag(0);
 		
-		textMessage.setContent(respContent);
+		//textMessage.setContent(respContent);
+		textMessage.setContent("Biu~的一下你就来到小岗的的大本营啦！\n"
+				+ "[鼓掌][鼓掌][鼓掌][鼓掌][爱心][鼓掌][鼓掌][鼓掌][鼓掌]\n"
+				+ "还等什么？早到早得哦~[勾引]");
 		return MessageUtil.textMessageToXml(textMessage);
 	}
 }
