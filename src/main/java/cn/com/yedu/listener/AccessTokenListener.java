@@ -1,16 +1,17 @@
 package cn.com.yedu.listener;
 
-import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.annotation.Resource;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import org.apache.log4j.Logger;
 
-import cn.com.yedu.service.IAccessTokenService;
-
+/**
+ * 监听器启动获取AccessToken 并创建  底部菜单
+ * @author Administrator
+ *
+ */
 public class AccessTokenListener implements ServletContextListener {
 
 	private static Logger logger = Logger.getLogger(AccessTokenListener.class);
@@ -26,7 +27,7 @@ public class AccessTokenListener implements ServletContextListener {
 		String str = null;
 		if (str == null && myThread == null) {
 			myThread = new MyThread();
-			myThread.start(); // servlet 上下文初始化时启动 socket
+			myThread.start();
 		}
 		
 		/*//使用TimerTask定时器
