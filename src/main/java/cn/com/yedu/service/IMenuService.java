@@ -4,5 +4,5 @@ import cn.com.yedu.pojo.Menu;
 
 public interface IMenuService {
 
-	Menu createMenu();
+	public Menu createMenu();
 }

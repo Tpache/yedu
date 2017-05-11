@@ -2,5 +2,6 @@ package cn.com.yedu.service;
 
 public interface IAccessTokenService {
 	
-	public String updateAccessTokenByAppId();
+	public String getLocalAccessToken();
+	public void updateAccessTokenByAppId();
 }
