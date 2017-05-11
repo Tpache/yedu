@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="cn.com.yedu.dao.IAccessTokenDao">
+ 
+	<select id="getLocalAccessToken" resultType="cn.com.yedu.pojo.AccessToken">
+		select 
+			appId as appId,
+			appSecret as appSecret,
+			accessToken as accessToken,
+			expiresIn as expiresIn,
+			crtTime as crtTime
+			from t_access_token  
+		where appId = #{0}
+	</select>
+	
+ 	<update id="updateAccessTokenByAppId" parameterType="cn.com.yedu.pojo.AccessToken">
+   		UPDATE t_access_token  
+   		SET accessToken = #{accessToken},
+   		    expiresIn = #{expiresIn}, 
+   		    crtTime = #{crtTime}
+   		WHERE appId = #{appId} AND appSecret = #{appSecret} 
+  	</update>
+ </mapper>

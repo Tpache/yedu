@@ -8,7 +8,7 @@ public class Constants {
 	/**
 	 * SECRET
 	 */
-	public static String SECRET = "ddd55a78b563cbf8d926377b1f0758a2";
+	public static String APPSECRET = "ddd55a78b563cbf8d926377b1f0758a2";
 	/**
 	 * 获取ACCESS_TOKEN接口
 	 */
