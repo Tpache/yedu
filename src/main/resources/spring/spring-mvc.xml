@@ -48,13 +48,5 @@
         <property name="maxInMemorySize" value="40960" />  
     </bean>
 
-
-	<configuration>
-		<settings>
-			<!-- 打印查询语句 -->
-			<setting name="logImpl" value="LOG4J" />
-		</settings>
-	</configuration>
-    
 </beans>
   

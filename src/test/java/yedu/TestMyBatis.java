@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.alibaba.fastjson.JSON;
 
 import cn.com.yedu.pojo.User;
+import cn.com.yedu.service.IMenuService;
 import cn.com.yedu.service.IUserService;
 import cn.com.yedu.util.PropertiesUtils;
 
@@ -23,6 +24,8 @@ public class TestMyBatis {
 //		private ApplicationContext ac = null;
 	  @Resource
 	  private IUserService userService ;
+	  @Resource
+	  private IMenuService menuService ;
 
 //		@Before
 //		public void before() {
@@ -45,5 +48,10 @@ public class TestMyBatis {
 		  System.out.println(PropertiesUtils.getContextProperty("APPID"));
 //		  System.out.println(PropertiesUtils.getContextProperty("log4j.appender.Console"));
 	  }
-
+	  
+	  @Test
+	  public void TestMenu(){
+		  String menuJson = menuService.generateMenu("wxa09bf22f8c60f02d");
+		  System.out.println(menuJson);
+	  }
 }

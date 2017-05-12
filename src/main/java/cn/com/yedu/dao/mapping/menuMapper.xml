@@ -4,25 +4,25 @@
 
 <mapper namespace="cn.com.yedu.dao.IMenuDao">
 
-	<select id="generateMenu" resultType="java.util.Map">
+	<select id="generateMenu" resultType="java.util.HashMap">
 		SELECT
 			t.ID as 'id',
-			t.menuId as menuId,
+			t.`key` AS 'key',
 			t.`name` as 'name',
 			t.type as type,
 			t.url as url
 		FROM
 			t_menu t
 		WHERE
-			t.appId = #{0} 
-			<if test="#{1} == null || #{1} == '' ">
+			t.appId = #{appId} 
+			<if test="null == parentId || parentId == ''">
 				AND t.parentId = '-1' 
 			</if>
-			<if test="#{1} != null || #{1} != '' ">
-				AND t.parentId = #{1} 
+			<if test="parentId != null and parentId != '' ">
+				AND t.parentId = #{parentId} 
 			</if>
 		ORDER BY
-			t.menuId
+			t.ID
 	</select>
 
 </mapper>

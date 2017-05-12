@@ -4,8 +4,6 @@ import org.apache.log4j.Logger;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 
-import cn.com.yedu.pojo.Menu;
-import cn.com.yedu.service.IAccessTokenService;
 import cn.com.yedu.service.IMenuService;
 import net.sf.json.JSONObject;
 
@@ -26,7 +24,7 @@ public class MenuUtils {
         //拼装删除菜单的url
         String url = PropertiesUtils.getContextProperty("DELETE_MENU_URL").replace("ACCESS_TOKEN", accessToken);
         //调用接口创建菜单
-        JSONObject jsonObject = HttpUtils.httpRequest(url,"GET","",PropertiesUtils.getContextProperty("APPID"),PropertiesUtils.getContextProperty("APPSECRET"));
+        JSONObject jsonObject = HttpUtils.httpRequest(url,"GET","","","");//PropertiesUtils.getContextProperty("APPID"),PropertiesUtils.getContextProperty("APPSECRET"));
         if(jsonObject!=null){
             if(jsonObject.containsKey("errcode") && 0!=jsonObject.getInt("errcode")){
                 result = jsonObject.getInt("errcode");
@@ -48,13 +46,14 @@ public class MenuUtils {
 		//拼装删除菜单的url
         String url = PropertiesUtils.getContextProperty("CREATE_MENU_URL").replace("ACCESS_TOKEN", accessToken);
         //调用接口创建菜单
-        JSONObject jsonObject = HttpUtils.httpRequest(url,"POST",MenuUtils.generateMenu(),PropertiesUtils.getContextProperty("APPID"),PropertiesUtils.getContextProperty("APPSECRET"));
+        JSONObject jsonObject = HttpUtils.httpRequest(url,"POST",MenuUtils.generateMenu(),"","");//PropertiesUtils.getContextProperty("APPID"),PropertiesUtils.getContextProperty("APPSECRET"));
         if(jsonObject!=null){
             if(jsonObject.containsKey("errcode") && 0!=jsonObject.getInt("errcode")){
                 result = jsonObject.getInt("errcode");
-                logger.error("删除菜单失败 errcode:{"+jsonObject.getInt("errcode")+"} errmsg:{"+ jsonObject.getString("errmsg")+"}");
+                logger.error("创建菜单失败 errcode:{"+jsonObject.getInt("errcode")+"} errmsg:{"+ jsonObject.getString("errmsg")+"}");
             }
         }
+        logger.error("创建菜单成功");
 		 
 		
 		/*Menu menu = new Menu();
@@ -115,11 +114,11 @@ public class MenuUtils {
 			WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
 			menuService = (IMenuService) wac.getBean("menuService");
 		}
-		menuService.generateMenu(PropertiesUtils.getContextProperty("APPID"));
+		String menuJson = menuService.generateMenu(PropertiesUtils.getContextProperty("APPID"));
 		 /*JSONObject jsonObject = JSONObject.fromObject(MenuUtils.createMenu(""));
 		
 		 System.out.println(jsonObject);
 		System.out.println(jsonObject.toString());*/
-		return "";
+		return menuJson;
 	}
 }

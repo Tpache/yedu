@@ -2,16 +2,17 @@ package cn.com.yedu.pojo;
 
 public class ViewButton extends Button{
 
-	private String menuId;
+	private String key;
 	private String type;
 	private String url;
 	private String parentId;
 	
-	public String getMenuId() {
-		return menuId;
+	
+	public String getKey() {
+		return key;
 	}
-	public void setMenuid(String menuId) {
-		this.menuId = menuId;
+	public void setKey(String key) {
+		this.key = key;
 	}
 	public String getType() {
 		return type;
@@ -28,7 +29,8 @@ public class ViewButton extends Button{
 	public String getParentId() {
 		return parentId;
 	}
-	public void setParentid(String parentId) {
+	public void setParentId(String parentId) {
 		this.parentId = parentId;
 	}
+	
 }

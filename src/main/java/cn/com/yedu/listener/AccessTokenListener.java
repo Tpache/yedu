@@ -121,7 +121,7 @@ class MyThread extends Thread {
 	public void run() {
 		while (!this.isInterrupted()) {// 线程未中断执行循环
 			try {
-				Thread.sleep(2*60/**60*/*1000); // 每2个小时执行一次
+				Thread.sleep(2*60*60*1000); // 每2个小时执行一次
 				logger.info("获取微信服务器AccessToken开始--> " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 				accessTokenService.updateAccessTokenByAppId();
 				logger.info("获取微信服务器AccessToken结束--> " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
