@@ -11,7 +11,7 @@ import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 
 import cn.com.yedu.service.IAccessTokenService;
-import cn.com.yedu.service.IMenuService;
+import cn.com.yedu.util.MenuUtils;
 
 /**
  * 监听器启动获取AccessToken 并创建  底部菜单
@@ -24,7 +24,7 @@ public class AccessTokenListener implements ServletContextListener {
 
 	//@Resource
 	public IAccessTokenService accessTokenService;
-	public IMenuService menuService;
+//	public IMenuService menuService;
 	private MyThread myThread;
 
 	@Override
@@ -33,14 +33,15 @@ public class AccessTokenListener implements ServletContextListener {
 			WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
 			accessTokenService = (IAccessTokenService) wac.getBean("accessTokenService");
 		}
-		if(null == menuService || "".equals(menuService)){
+		/*if(null == menuService || "".equals(menuService)){
 			WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
 			menuService = (IMenuService) wac.getBean("menuService");
-		}
+		}*/
 		//更新AccessToken
 		accessTokenService.updateAccessTokenByAppId();
 		//创建菜单
-		
+//		menuService.createMenu();
+		createMenu();
 		/*new Thread(new Runnable() {
 			public void run() {
 				while (true) {// 线程未中断执行循环
@@ -76,6 +77,31 @@ public class AccessTokenListener implements ServletContextListener {
 		}
 
 	}
+	
+	/**
+	 * @description :项目启动创建菜单   创建之前首先删除原先的菜单 后再进行创建
+	 * @param :
+	 * @return :		void
+	 * @throws :
+	 * @author :		mpf
+	 * @Date:	2017年5月12日 上午11:33:56
+	 */
+	private void createMenu(){
+		String accessToken = accessTokenService.getLocalAccessToken();
+		if(isNotNull(accessToken)){
+			int delResult = MenuUtils.delMenu(accessToken);
+			if(delResult == 0){
+				MenuUtils.createMenu(accessToken);
+			}
+		}
+	}
+	
+	private boolean isNotNull(Object obj){
+    	if(obj != null && !"".equals(obj)){
+    		return true;
+    	}
+    	return false;
+    }
 
 }
 

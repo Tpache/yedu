@@ -4,15 +4,22 @@ public class Constants {
 	/**
 	 * APPID
 	 */
-	public static String APPID = "wxafa3acec3c315f4d";
+	//public static String APPID = "wxafa3acec3c315f4d";
 	/**
 	 * SECRET
 	 */
-	public static String APPSECRET = "ddd55a78b563cbf8d926377b1f0758a2";
+	//public static String APPSECRET = "ddd55a78b563cbf8d926377b1f0758a2";
 	/**
 	 * 获取ACCESS_TOKEN接口
 	 */
 	public static String GET_ACCESSTOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
+	
+	//创建菜单
+	public static String CREATE_MENU = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
+	//查询菜单
+	public static String QUERY_MENU = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN";
+	//删除菜单
+	public static String DELETE_MENU = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=ACCESS_TOKEN";
 	/**
 	 * ACCESS_TOKEN有效时间(单位：ms)
 	 */

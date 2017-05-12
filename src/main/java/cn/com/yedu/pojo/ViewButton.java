@@ -2,16 +2,16 @@ package cn.com.yedu.pojo;
 
 public class ViewButton extends Button{
 
-	private String menuid;
+	private String menuId;
 	private String type;
 	private String url;
-	private String parentid;
+	private String parentId;
 	
-	public String getMenuid() {
-		return menuid;
+	public String getMenuId() {
+		return menuId;
 	}
-	public void setMenuid(String menuid) {
-		this.menuid = menuid;
+	public void setMenuid(String menuId) {
+		this.menuId = menuId;
 	}
 	public String getType() {
 		return type;
@@ -25,10 +25,10 @@ public class ViewButton extends Button{
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public String getParentid() {
-		return parentid;
+	public String getParentId() {
+		return parentId;
 	}
-	public void setParentid(String parentid) {
-		this.parentid = parentid;
+	public void setParentid(String parentId) {
+		this.parentId = parentId;
 	}
 }

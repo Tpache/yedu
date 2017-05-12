@@ -46,7 +46,15 @@
         <property name="maxUploadSize" value="10485760000" />  
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960" />  
-    </bean> 
+    </bean>
 
+
+	<configuration>
+		<settings>
+			<!-- 打印查询语句 -->
+			<setting name="logImpl" value="LOG4J" />
+		</settings>
+	</configuration>
+    
 </beans>
   
