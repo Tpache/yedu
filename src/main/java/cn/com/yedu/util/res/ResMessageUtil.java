@@ -24,7 +24,7 @@ public class ResMessageUtil {
 		//textMessage.setContent(respContent);
 		textMessage.setContent("Biu~的一下你就来到小岗的的大本营啦！\n"
 				+ "[鼓掌][鼓掌][鼓掌][鼓掌][爱心][鼓掌][鼓掌][鼓掌][鼓掌]\n"
-				+ "还等什么？早到早得哦~[勾引]");
+				+ "还等什么？<a href='http://www.baidu.com'>早到早得哦</a>~[勾引]");
 		return MessageUtil.textMessageToXml(textMessage);
 	}
 }
