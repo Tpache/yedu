@@ -34,6 +34,16 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<filter>
+		<filter-name>XssFilter</filter-name>
+		<filter-class>cn.com.yedu.filter.XSSFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>XssFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+	
 	<!-- Spring监听器 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

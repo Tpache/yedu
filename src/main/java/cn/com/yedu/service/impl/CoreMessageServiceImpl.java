@@ -43,7 +43,10 @@ public class CoreMessageServiceImpl implements ICoreMessageService{
 					
 				}
 			}else if(MessageUtil.REQ_MESSAGE_TYPE_LOCATION.equals(msgType)){
-				
+				String latitude = messages.get("Latitude");//<>23.137466</Latitude>
+				String longitude = messages.get("Longitude");//<>113.352425</Longitude>
+				String pecision = messages.get("Precision");//<>119.385040</Precision>
+				System.out.println("latitude--->"+latitude +"    longitude--->"+longitude +"    pecision--->"+pecision);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
