@@ -42,10 +42,6 @@
 		<filter-name>XssFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-<<<<<<< HEAD
-=======
-	<filter>
->>>>>>> branch 'master' of https://github.com/Tpache/yedu.git
 	
 	<!-- Spring监听器 -->
 	<listener>

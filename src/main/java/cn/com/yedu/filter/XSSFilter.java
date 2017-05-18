@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.Filter;
@@ -14,6 +15,8 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
@@ -33,14 +36,34 @@ public class XSSFilter implements Filter  {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		// 读取文件
-		excludeUrls = readFile(XSSFilter.class.getResource("xssWhite/xssWhite.txt").getPath());
+		excludeUrls = readFile(XSSFilter.class.getResource("/xssWhite.txt").getPath());
 		
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
+		HttpServletRequest request = (HttpServletRequest) servletRequest;
+		HttpServletResponse response = (HttpServletResponse) servletResponse;
+		String pathInfo = request.getPathInfo() == null ? "" : request.getPathInfo();
+		String url = request.getServletPath() + pathInfo;
+		String uri = request.getRequestURI();
+
+
+		// 获取请求所有参数，校验防止SQL注入，防止XSS漏洞
+		@SuppressWarnings("unchecked")
+		Enumeration<String> params = request.getParameterNames();
+		while (params.hasMoreElements()) {
+			String paramName = params.nextElement();
+			String paramVale = request.getParameter(paramName);
+			// 校验是否存在SQL注入信息
+			/*if (CheckUtil.checkSQLInject(paramVale, url)) {
+				errorResponse(response);
+				return;
+			}*/
+		}
+	
+		chain.doFilter(request, response);
 		
 	}
 
