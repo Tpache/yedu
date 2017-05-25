@@ -51,9 +51,10 @@ public class MenuUtils {
             if(jsonObject.containsKey("errcode") && 0!=jsonObject.getInt("errcode")){
                 result = jsonObject.getInt("errcode");
                 logger.error("创建菜单失败 errcode:{"+jsonObject.getInt("errcode")+"} errmsg:{"+ jsonObject.getString("errmsg")+"}");
+            }else{
+            	logger.error("创建菜单成功");
             }
         }
-        logger.error("创建菜单成功");
 		 
 		
 		/*Menu menu = new Menu();
