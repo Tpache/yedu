@@ -37,16 +37,17 @@ public class CoreMessageServiceImpl implements ICoreMessageService{
 				
 				if(MessageUtil.EVENT_TYPE_SUBSCRIBE.equals(eventType)){//事件类型：subscribe(订阅) 
 					
-					result = ResMessageUtil.getTextMessage(fromUserName,toUserName,Constants.WELOME_SUBSCRIBE);
+					result = ResMessageUtil.getSubscribeMessage(fromUserName,toUserName,Constants.WELOME_SUBSCRIBE);
 					
 				}else if(MessageUtil.EVENT_TYPE_UNSUBSCRIBE.equals(eventType)){//事件类型：unsubscribe(取消订阅) 
 					
 				}
 			}else if(MessageUtil.REQ_MESSAGE_TYPE_LOCATION.equals(msgType)){
-				String latitude = messages.get("Latitude");//<>23.137466</Latitude>
-				String longitude = messages.get("Longitude");//<>113.352425</Longitude>
-				String pecision = messages.get("Precision");//<>119.385040</Precision>
-				System.out.println("latitude--->"+latitude +"    longitude--->"+longitude +"    pecision--->"+pecision);
+				String latitude = messages.get("Location_X");//<>23.137466</Latitude>
+				String longitude = messages.get("Location_Y");//<>113.352425</Longitude>
+				String pecision = messages.get("Scale");//<>119.385040</Precision>
+				String label = messages.get("Label");//<>119.385040</Precision>
+				System.out.println("latitude--->"+latitude +"    longitude--->"+longitude +"    pecision--->"+pecision+"    label--->"+label);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -50,7 +50,9 @@ public class MenuServiceImpl implements IMenuService{
 			}
 			menu.setButton(complexButtons);
 		}
-		return JSONObject.fromObject(menu).toString();
+		String menus = JSONObject.fromObject(menu).toString(); 
+		System.out.println("------> menus:"+menus);
+		return menus;
 	}
 	
 }

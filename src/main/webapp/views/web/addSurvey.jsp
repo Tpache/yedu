@@ -11,7 +11,7 @@
 
 <body>
     <div class=" all_660">
-        <div class="yd_box"></div>
+        <div class="yd_box">123456</div>
         <div class="but" style="padding-top: 20px">
             <select id="addquerstions" class="addquerstions" name="">
                 <option value="-1">添加问题</option>
